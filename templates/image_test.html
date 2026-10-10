@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Image Test | ComicCraft
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="card">
+
+
+    <h1>
+        Image Generation Test
+    </h1>
+
+
+    <p>
+
+        <strong>
+            Prompt:
+        </strong>
+
+        {{ prompt }}
+
+    </p>
+
+
+    {% if error %}
+
+    <p class="error">
+
+        {{ error }}
+
+    </p>
+
+    {% endif %}
+
+
+    {% if image_url %}
+
+    <img
+        class="test-image"
+        src="{{ image_url }}"
+        alt="Generated test image"
+    >
+
+    {% endif %}
+
+
+    <p>
+
+        <a
+            class="button secondary"
+            href="/"
+        >
+
+            Back Home
+
+        </a>
+
+    </p>
+
+
+</div>
+
+
+{% endblock %}

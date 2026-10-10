@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Comic Preview | ComicCraft
+
+{% endblock %}
+
+
+{% block content %}
+
+
+{% if error %}
+
+
+<div class="card error">
+
+    <h2>
+        Generation failed
+    </h2>
+
+    <p>
+        {{ error }}
+    </p>
+
+    <a
+        class="button"
+        href="/"
+    >
+        Try Again
+    </a>
+
+</div>
+
+
+{% else %}
+
+
+<section class="hero">
+
+    <h1>
+        Your Comic Preview
+    </h1>
+
+    <p>
+        Five panels generated from your story idea.
+    </p>
+
+</section>
+
+
+<div class="comic-grid">
+
+
+{% for panel in layout %}
+
+
+<article class="panel card">
+
+
+    <h2>
+
+        Panel {{ panel.panel_number }}:
+        {{ panel.title }}
+
+    </h2>
+
+
+    <img
+        src="{{ panel.image_url }}"
+        alt="{{ panel.title }}"
+    >
+
+
+    <p class="scene">
+
+        <em>
+            {{ panel.scene_description }}
+        </em>
+
+    </p>
+
+
+    <p>
+
+        <strong>
+            Caption:
+        </strong>
+
+        {{ panel.caption }}
+
+    </p>
+
+
+    <p>
+
+        {{ panel.narration }}
+
+    </p>
+
+
+    {% if panel.dialogue %}
+
+    <p class="dialogue">
+
+        {{ panel.dialogue }}
+
+    </p>
+
+    {% endif %}
+
+
+    <details>
+
+        <summary>
+            Image Prompt
+        </summary>
+
+        <p>
+            {{ panel.image_prompt }}
+        </p>
+
+    </details>
+
+
+</article>
+
+
+{% endfor %}
+
+
+</div>
+
+
+<div class="actions">
+
+
+    <a
+        class="button"
+        href="/export/{{ comic_id }}"
+    >
+
+        ⬇ Download Your Comic as PDF
+
+    </a>
+
+
+    <a
+        class="button secondary"
+        href="/export-success/{{ comic_id }}"
+    >
+
+        View Export Success
+
+    </a>
+
+
+    <a
+        class="button secondary"
+        href="/"
+    >
+
+        Create Another Comic
+
+    </a>
+
+
+</div>
+
+
+{% endif %}
+
+
+{% endblock %}
